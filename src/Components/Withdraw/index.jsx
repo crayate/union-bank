@@ -7,13 +7,14 @@ const Withdraw = () => {
     const [withdraw, setWithdraw] = useState(0);
   
     const handleChange = (e) => {
-      setWithdraw(e.target.value);
+      e.target.value > balance ? alert("non-sufficient funds") : setWithdraw(e.target.value);
     }
   
     const handleSubmit = (event) => {
       setBalance(balance - withdraw);
       setTransactions([...transactions, -withdraw]);
       console.log(transactions);
+      alert('Your withdraw was processed');
       event.preventDefault();
     }
       

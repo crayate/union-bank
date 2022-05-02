@@ -1,0 +1,10 @@
+.selected{
+    background-color:#84bd00 !important;
+    border-radius:50px !important;
+    color: white !important;
+}
+
+.nav-link{
+    font-family: 'Poiret One', cursive !important;
+    font-weight: bold ;
+}

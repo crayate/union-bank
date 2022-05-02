@@ -12,6 +12,7 @@ const AppRouter = (props) => {
     const { isLoggedIn } = useContext(LogInContext)
     return (
     <Router>
+        {props.children}
         <Switch>          
             {/* PUBLIC ROUTES*/}
             <Route path="/" exact component={HomePage} />

@@ -7,13 +7,14 @@ const Deposit = () => {
   const [deposit, setDeposit] = useState(0);
 
   const handleChange = (e) => {
-    setDeposit(e.target.value);
+    e.target.value < 0 ? alert("deposit amount can't be negative") : setDeposit(e.target.value);
   }
 
   const handleSubmit = (event) => {
     setBalance(+balance + +deposit);
     setTransactions([...transactions, deposit]);
     console.log(transactions);
+    alert('Your deposit was processed');
     event.preventDefault();
   }
     
