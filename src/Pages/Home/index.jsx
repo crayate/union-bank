@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Card, Container, Row } from 'react-bootstrap';
 import LogInApp from '../../Components/Login';
 import bgPhoto from '../../assets/bgPhoto.jpg';
+import { NavLink } from 'react-router-dom';
 
 var photo = {
   backgroundImage: `url(${bgPhoto})`,
@@ -23,14 +24,14 @@ const Home = () => {
         <LogInApp />
       </Card.Body>
       <Card.Footer className="text-muted">Don't have an account yet? 
-        <a href='/signup'>Create one</a>
+        <NavLink to="/signup" exact>Create one</NavLink>  
       </Card.Footer>
       </Card>
     </Row>
     <Row style={{ height: 'auto' }}>      
       <Container className='text-center' >
         <p style={{ marginLeft:"40%", marginTop:"5%", color:"white"}}>Don't let money hold you back</p>
-        <Button style={{ marginLeft:"40%", backgroundColor:"#84bd00", borderColor:"#84bd00" }} href="/moreinfo">More Info</Button>
+        <NavLink to="/moreinfo" exact><Button style={{ marginLeft:"40%", backgroundColor:"#84bd00", borderColor:"#84bd00" }} >More Info</Button></NavLink>
       </Container>
     </Row>
     </Container>

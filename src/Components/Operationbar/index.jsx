@@ -15,29 +15,29 @@ const OperationBar = () => {
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     width: '100vw',
-    height: '80vh'
+    height: '85vh'
   }
   return (
       <Container fluid>
         <Row>
-        <Col xs={2}>
-          <Navbar collapseOnSelect expand="xl" bg="light" variant="light" >
-          <Nav className="flex-column" style={{height:'75vh'}}>
-            <NavLink to={`${url}`}  activeClassName="selected" className="nav-link" exact>My account</NavLink>
-            <NavLink to={`${url}/withdraw`} activeClassName="selected" className="nav-link" exact>Withdraw</NavLink> 
-            <NavLink to={`${url}/deposit`} activeClassName="selected" className="nav-link" exact>Deposit</NavLink>
-          </Nav>
-          </Navbar>
-        </Col>
-        <Col  style={background}>
-          <Col md={{ offset: 3 }}>
-          <Switch >
-            <Route exact path={path} component={Balance}/> 
-            <Route exact path={`${path}/withdraw`} component={Withdraw} />
-            <Route exact path={`${path}/deposit`} component={Deposit}/>
-          </Switch>
+          <Col xs={2}>
+            <Navbar collapseOnSelect expand="xl" bg="light" variant="light" style={{height:'85vh', minWidth:'20vw', maxWidth:'30vw' }}>
+            <Nav className="flex-column" style={{height:'75vh', minWidth:'20vw', maxWidth:'30vw' }}>
+              <NavLink style={{fontSize:'1.3em'}} to={`${url}`}  activeClassName="selected" className="nav-link" exact>My account</NavLink>
+              <NavLink style={{fontSize:'1.3em'}} to={`${url}/withdraw`} activeClassName="selected" className="nav-link" exact>Withdraw</NavLink> 
+              <NavLink style={{fontSize:'1.3em'}} to={`${url}/deposit`} activeClassName="selected" className="nav-link" exact>Deposit</NavLink>
+            </Nav>
+            </Navbar>
           </Col>
-        </Col>
+          <Col  style={background}>
+            <Container style={{paddingLeft: '10vw'}}>
+            <Switch >
+              <Route exact path={path} component={Balance}/> 
+              <Route exact path={`${path}/withdraw`} component={Withdraw} />
+              <Route exact path={`${path}/deposit`} component={Deposit}/>
+            </Switch>
+            </Container>
+          </Col>
         </Row>
       </Container>
 

@@ -15,7 +15,8 @@ const SignUp = () => {
       pwd: '',
       pwd2: '',
       },
-      onSubmit: values => {
+      onSubmit: () => {
+        setValidated(true);
         alert('succes!');
       },
       validate: values => {
@@ -39,21 +40,21 @@ const SignUp = () => {
     setPwdShow(!pwdShow);
   }
 
-  /*const handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (!form.checkValidity()) {
       event.preventDefault();
       event.stopPropagation();
     }
     setValidated(true);
-  };*/
+  };
   
 
   return (
 
     <Container style={{width :"75%", alignSelf:"center"}}>
     
-    <Form noValidate validated={validated} onSubmit={formik.handleSubmit}>
+    <Form onSubmit={formik.handleSubmit}>
     <h1>Sign Up to Union Bank.</h1>
       <Row className="mb-3">
         <Form.Group as={Col} md="4" controlId="validationFirstName">
@@ -138,10 +139,13 @@ const SignUp = () => {
       
       <Button type="submit" style={{ backgroundColor:"#84bd00", borderColor:"#84bd00" }}>SignUp</Button>
     </Form>
+    {validated && <Button onClick={()=> {formik.resetForm();setValidated(false)}} style={{ marginTop:"15px", backgroundColor:"#004b87", borderColor:"#004b87" }} >Add another account</Button>}
     </Container>
     
-      
   )
 }
+
+
+// EN UN USESTATE GENERAR UNA VARIABLE SIGNUP QUE CAMBIA EN ONSUBMIT (CREO Q PUEDE SER EL VALIDATE Y SETVALIDATE) Y HACER UN BUTTON CONDICIONAL
 
 export default SignUp;

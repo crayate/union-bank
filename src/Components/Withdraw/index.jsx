@@ -12,14 +12,14 @@ const Withdraw = () => {
   
     const handleSubmit = (event) => {
       setBalance(balance - withdraw);
-      setTransactions([...transactions, -withdraw]);
+      setTransactions([ ...transactions, -withdraw]);
       console.log(transactions);
       alert('Your withdraw was processed');
       event.preventDefault();
     }
       
     return (
-      <Card className='text-center' style={{ width: '40rem', margin:"20px", padding:"0"}}>
+      <Card className='text-center' style={{maxWidth: '60vw', margin:"20px", padding:"0"}}>
         <Card.Header>Make a withdraw</Card.Header>
         <Card.Body>
           <h3>Account balance:{balance}</h3>

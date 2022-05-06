@@ -1,24 +1,27 @@
 import { useFormik } from 'formik';
-import React, { /*useContext,*/ useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Form, InputGroup, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-//import { LogInContext } from '../../context/loginContext';
+import { LogInContext } from '../../context/loginContext';
 
 
 const LogInApp = (props) => {
-//  const { handleLogIn } = useContext(LogInContext);
-  const [validated, setValidated] = useState(false);
+  const { isLoggedIn, setIsLoggedIn, user, setUser} = useContext(LogInContext);
   const [pwdShow, setPwdShow] = useState(false);
   
   // VALIDATION LOGIN
   let check = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
+  const history = useHistory();
   const formik = useFormik(
     { initialValues : {
       email: '',
       pwd: '',
       },
-      onSubmit: values => {
-        console.log('form:', values)
+      onSubmit: () => {
+        setIsLoggedIn(true);
+        setUser(formik.values.email); 
+        console.log(isLoggedIn);
+        history.push('/account');
       },
       validate: values => {
         let errors={};
@@ -30,29 +33,13 @@ const LogInApp = (props) => {
     }
   );
 
-
   const togglePwd = () => {
     setPwdShow(!pwdShow);
   }
 
-  //SUBMITING
-  
-  const history = useHistory();
-  
-
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (!form.checkValidity()) {
-      event.preventDefault();
-      event.stopPropagation();
-    } else {history.push('/account')}
-    setValidated(true);
-    
-  };
-
   return (
     
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+    <Form onSubmit={formik.handleSubmit}>
       <Row className="mb-3" style={{alignItems:"center"}}>
         
         <Form.Group md="4" id="validationFirstName">
@@ -87,10 +74,11 @@ const LogInApp = (props) => {
         </Form.Group>
         
       </Row>
-      <Button style={{ marginTop:"10px", backgroundColor:"#84bd00", borderColor:"#84bd00" }} type="submit">Log In</Button>
+      <Button type="submit" style={{ marginTop:"10px", backgroundColor:"#84bd00", borderColor:"#84bd00" }} >Log In</Button>
     </Form>
   )
 }
 
 export default LogInApp; 
 
+//en el contexto de login, crear un user / setUser con useState exportarlos y cambiarlos en submit, con el valor de formik.values.email **y esto ponerlo ne navbar como "loged as: username"

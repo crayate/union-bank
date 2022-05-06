@@ -6,20 +6,20 @@ const Deposit = () => {
   const {balance, setBalance, transactions, setTransactions} = useContext(OperationContext);
   const [deposit, setDeposit] = useState(0);
 
-  const handleChange = (e) => {
-    e.target.value < 0 ? alert("deposit amount can't be negative") : setDeposit(e.target.value);
+  const handleChange = (event) => {
+    event.target.value < 0 ? alert("deposit amount can't be negative") : setDeposit(event.target.value);
   }
 
   const handleSubmit = (event) => {
     setBalance(+balance + +deposit);
-    setTransactions([...transactions, deposit]);
-    console.log(transactions);
+    setTransactions([  ...transactions, deposit ]);
+    console.log(`transactions: ${transactions} /// balance: ${balance}`);
     alert('Your deposit was processed');
     event.preventDefault();
   }
     
   return (
-    <Card className='text-center' style={{ width: '40rem', margin:"20px", padding:"0"}}>
+    <Card className='text-center' style={{ maxWidth: '60vw', margin:"20px", padding:"0"}}>
       <Card.Header>Make a Deposit</Card.Header>
       <Card.Body>
         <h3>Account balance:{balance}</h3>
